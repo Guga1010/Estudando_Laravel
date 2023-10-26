@@ -1,15 +1,18 @@
 <h3>Fornecedor</h3>
 
-@php
-@endphp
-
 @isset($fornecedores)
-    Fornecedor: {{ $fornecedores[0]['nome'] }}
-    <br>
-    Status: {{ $fornecedores[0]['status'] }}   
-    <br>
-    @isset($fornecedores[0]['cnpj'])
-        CNPJ: {{ $fornecedores[0]['cnpj'] }}
-    @endisset
+    @forelse ($fornecedores as $indice => $fornecedor)
+        Fornecedor: @{{ $fornecedor['nome'] }}
+        <br>
+        Status: @{{ $fornecedor['status'] }}   
+        <br>
+        CNPJ: @{{ $fornecedor['cnpj'] ?? '' }} 
+        <br>
+        Telefone: (@{{ $fornecedor['ddd'] ?? '' }}) @{{ $fornecedor['telefone'] ?? '' }}
+        <hr>   
+    @empty    
+        Não existem fornecedores cadastrados!!!
+    @endforelse
 @endisset
+
 
